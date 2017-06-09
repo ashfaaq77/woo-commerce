@@ -16,6 +16,13 @@ from flask import make_response
 # Flask app should start in global layout
 app = Flask(__name__)
 
+wcapi = API(
+	url = "https://dev.i-spy360.mu/woocommerce-chatbot/",
+	consumer_key = "ck_b1d5aede2d327d994f3abac95945de0d3881fd9e",
+	consumer_secret = "cs_980d7219d925bbd2ed75faafbd74ec59695153ed",
+	wp_api = True,
+	version = "wc/v2"
+)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -32,29 +39,30 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-
+#need to change this one
 def processRequest(req):
+
+	
     if req.get("result").get("action") != "retrieveProduct":
         return {}
-    #baseurl = "https://query.yahooapis.com/v1/public/yql?"
-    json_query = makeJsonQuery(req)
-    if json_query is None:
-        return {}
-    #yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
-    result = urlopen(json_query).read()
-    data = json.loads(result)
+	
+    data = json(req)
     res = makeWebhookResult(data)
     return res
 
 
-def makeJsonQuery(req):
-    result = req.get("result")
+def json(req):
+	
+	result = req.get("result")
     parameters = result.get("parameters")
-    goodName = parameters.get("goods")
-    if goodName is None:
-        return None
-
-    return "https://dev.i-spy360.mu/woocommerce-chatbot/wp-json/wc/v2/products/3719 -u ck_b1d5aede2d327d994f3abac95945de0d3881fd9e:cs_980d7219d925bbd2ed75faafbd74ec59695153ed"
+    goods = parameters.get("goods")
+    
+    if goods is None:
+    	return {}
+	
+	data = wcapi.get("products/3719").json()    
+    
+    return data
 
 
 def makeWebhookResult(data):
