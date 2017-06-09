@@ -1,6 +1,7 @@
 {
-  "name": “API.AI woo commerce”,
-  "description": "API.AI woo commerce”,
-  "repository": "https://github.com/ashfaaq77/apiai-woocommerce/",
+  "name": "API.AI webhook demonstration",
+  "description": "API.AI webhook demonstration",
+  "repository": "https://github.com/ashfaaq77/woo-commerce",
+  "logo": "http://xvir.github.io/img/apiai.png",
   "keywords": ["api.ai", "natural language"]
 }
