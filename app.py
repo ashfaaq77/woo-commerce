@@ -37,8 +37,8 @@ def webhook():
 def processRequest(req):
 
 	
-    if req.get("result").get("action") != "retrieveProduct":
-        return {}
+    #if req.get("result").get("action") != "retrieveProduct":
+     #   return {}
 	
     data = makeJson(req)
     res = makeWebhookResult(data)
@@ -46,12 +46,12 @@ def processRequest(req):
 
 
 def makeJson(req):
-	result = req.get("result")
-	parameters = result.get("parameters")
-	goods = parameters.get("goods")
+	#result = req.get("result")
+	#parameters = result.get("parameters")
+	#goods = parameters.get("goods")
 	
-	if goods is None:
-		return{}
+	#if goods is None:
+	#	return{}
 		
 	wcapi = API(
 	url = "https://dev.i-spy360.mu/woocommerce-chatbot/",
