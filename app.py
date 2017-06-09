@@ -128,8 +128,8 @@ def makeWebhookResult(data):
 	speech = "We have " + name + " \nThe link to it is " + permalink + " \nThe price is " + price + " \nWe have stock"
 	
 	
-    print("Response:")
-    print(speech)
+    #print("Response:")
+    #print(speech)
 
     return {
         "speech": speech,
