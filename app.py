@@ -12,6 +12,7 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
+from woocommerce import API
 
 # Flask app should start in global layout
 app = Flask(__name__)
@@ -46,27 +47,24 @@ def processRequest(req):
     if req.get("result").get("action") != "retrieveProduct":
         return {}
 	
-    data = json(req)
+    data = makeJson(req)
     res = makeWebhookResult(data)
     return res
 
 
-def json(req):
-	
+def makeJson(req):
 	result = req.get("result")
-    parameters = result.get("parameters")
-    goods = parameters.get("goods")
-    
-    if goods is None:
-    	return {}
+	parameters = result.get("parameters")
+	goods = parameters.get("goods")
 	
-	data = wcapi.get("products/3719").json()    
-    
-    return data
-
-
+	if goods is None:
+		return{}
+		
+	data = wcapi.get("products/3719").json()   
+	
+	return data
+	
 def makeWebhookResult(data):
-    
     name = data.get('name')
     if name is None:
         return {}
