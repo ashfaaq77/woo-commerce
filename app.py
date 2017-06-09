@@ -17,14 +17,6 @@ from woocommerce import API
 # Flask app should start in global layout
 app = Flask(__name__)
 
-wcapi = API(
-	url = "https://dev.i-spy360.mu/woocommerce-chatbot/",
-	consumer_key = "ck_b1d5aede2d327d994f3abac95945de0d3881fd9e",
-	consumer_secret = "cs_980d7219d925bbd2ed75faafbd74ec59695153ed",
-	wp_api = True,
-	version = "wc/v2"
-)
-
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
@@ -59,7 +51,14 @@ def makeJson(req):
 	
 	if goods is None:
 		return{}
-		
+	wcapi = API(
+	url = "https://dev.i-spy360.mu/woocommerce-chatbot/",
+	consumer_key = "ck_b1d5aede2d327d994f3abac95945de0d3881fd9e",
+	consumer_secret = "cs_980d7219d925bbd2ed75faafbd74ec59695153ed",
+	wp_api = True,
+	version = "wc/v2"
+	)	
+	
 	data = wcapi.get("products/3719").json()   
 	
 	return data
