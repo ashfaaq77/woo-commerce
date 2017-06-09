@@ -17,6 +17,13 @@ from woocommerce import API
 # Flask app should start in global layout
 app = Flask(__name__)
 
+wcapi = API(
+	url = "https://dev.i-spy360.mu/woocommerce-chatbot/",
+	consumer_key = "ck_b1d5aede2d327d994f3abac95945de0d3881fd9e",
+	consumer_secret = "cs_980d7219d925bbd2ed75faafbd74ec59695153ed",
+	wp_api = True,
+	version = "wc/v2"
+)
 
 @app.route('/webhook')
 def webhook():
@@ -33,19 +40,11 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-#need to change this one
+
 def processRequest(req):
 
-	
     if req.get("result").get("action") != "retrieveProduct":
-        speech = "action"
-        return {
-        	"speech": speech,
-        	"displayText": speech,
-        	# "data": data,
-        	# "contextOut": [],
-        	"source": "apiai-woocommerce"
-    	}
+        return {}
 	
     data = makeJson(req)
     res = makeWebhookResult(data)
@@ -58,23 +57,7 @@ def makeJson(req):
 	goods = parameters.get("goods")
 	
 	if goods is None:
-		speech = "goods"
-        	return {
-        		"speech": speech,
-        		"displayText": speech,
-        		# "data": data,
-        		# "contextOut": [],
-        		"source": "apiai-woocommerce"
-    		}
-		
-	wcapi = API(
-		url = "https://dev.i-spy360.mu/woocommerce-chatbot/",
-		consumer_key = "ck_b1d5aede2d327d994f3abac95945de0d3881fd9e",
-		consumer_secret = "cs_980d7219d925bbd2ed75faafbd74ec59695153ed",
-		wp_api = True,
-		version = "wc/v2"
-	)
-		
+        	return {}	
 	data = wcapi.get("products/3719").json()   
 	
 	return data
@@ -83,48 +66,23 @@ def makeWebhookResult(data):
     name = data.get("name")
     if name is None:
         speech = "name"
-        return {
-        	"speech": speech,
-        	"displayText": speech,
-        	# "data": data,
-        	# "contextOut": [],
-        	"source": "apiai-woocommerce"
-    	}
+        return {}
 
     permalink = data.get("permalink")
     if permalink is None:
         speech = "permalink"
-        return {
-        	"speech": speech,
-        	"displayText": speech,
-        	# "data": data,
-        	# "contextOut": [],
-        	"source": "apiai-woocommerce"
-    	}
+        return {}
 
     price = data.get("price")
     if price is None:
         speech = "price"
-        return {
-        	"speech": speech,
-        	"displayText": speech,
-        	# "data": data,
-        	# "contextOut": [],
-        	"source": "apiai-woocommerce"
-    	}
+        return {}
 	
 	stock = data.get("in_stock")
 	if price is None:
 		speech = "in_stock"
-        return {
-        	"speech": speech,
-        	"displayText": speech,
-        	# "data": data,
-        	# "contextOut": [],
-        	"source": "apiai-woocommerce"
-    	}
+        return {}
 	
-
 	speech = "We have " + name + " \nThe link to it is " + permalink + " \nThe price is " + price + " \nWe have stock"
 	
 	
