@@ -58,14 +58,14 @@ def makeJson(req):
 	goods = parameters.get("goods")
 	
 	if goods is None:
-		 speech = "goods"
-        return {
-        	"speech": speech,
-        	"displayText": speech,
-        	# "data": data,
-        	# "contextOut": [],
-        	"source": "apiai-woocommerce"
-    	}
+		speech = "goods"
+        	return {
+        		"speech": speech,
+        		"displayText": speech,
+        		# "data": data,
+        		# "contextOut": [],
+        		"source": "apiai-woocommerce"
+    		}
 		
 	wcapi = API(
 		url = "https://dev.i-spy360.mu/woocommerce-chatbot/",
