@@ -73,15 +73,15 @@ def makeJson(req):
 	return data
 	
 def makeWebHookResult(data):
-	name = data.get("name")
+	name = data.get('name')
 	if name is None:
 		return {}
 	
-	permalink = data.get("permalink")
+	permalink = data.get('permalink')
 	if permalink is None:
 		return {}
 	
-	price = data.get("price")
+	price = data.get('price')
 	if price is None:
 		return {}
 	
