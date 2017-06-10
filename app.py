@@ -44,10 +44,7 @@ def webhook():
 def processRequest(req):
 	
 	if req.get("result").get("action") != "retrieveProduct":
-		return {
-			"speech": "retrieveProducts"
-			"DisplayText": "retrieveProducts"
-		}
+		return {}
 	
 	data = makeJson(req)
 	res = makeWebHookResult(data)
@@ -60,10 +57,7 @@ def makeJson(req):
 	goods = parameters.get("goods")
 	
 	if goods is None:
-		return {
-			"speech": "goods"
-			"DisplayText": "goods"
-		}
+		return {}
 	
 	productResult = "products/" + goods
 	data = wcapi.get(productResult).json()
