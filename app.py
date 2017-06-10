@@ -77,7 +77,7 @@ def makeWebHookResult(data):
 	if price is None:
 		return {}
 	
-	speech = "We have " + name + "\nThe link to it is " + permalink + "\nThe price is " + price
+	speech = "We have " + name + " The link to it is " + permalink + " The price is " + price
 	
 	print("Responses")
 	print(speech)
