@@ -94,6 +94,8 @@ def makeWebHookResult(data):
 	return {
 		"speech": speech,
 		"displayText": speech,
+		#"data":{},
+		# "contextOut":[],
 		"source": "apiai-woocommerce"
 	}
 
