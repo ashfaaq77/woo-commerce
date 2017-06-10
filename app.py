@@ -44,7 +44,9 @@ def webhook():
 def processRequest(req):
 	
 	if req.get("result").get("action") != "retrieveProduct":
-		return {}
+		return {
+			"speech" = "retrieveProduct"
+		}
 	
 	data = makeJson(req)
 	res = makeWebHookResult(data)
@@ -57,7 +59,9 @@ def makeJson(req):
 	goods = parameters.get("goods")
 	
 	if goods is None:
-		return {}
+		return {
+			"speech" = "goods"
+		}
 	
 	data = wcapi.get("products/3719").json()
 	
@@ -66,15 +70,21 @@ def makeJson(req):
 def makeWebHookResult(data):
 	name = data.get("name")
 	if name is None:
-		return {}
+		return {
+			"speech" = "name"
+		}
 	
 	permalink = data.get("permalink")
 	if permalink is None:
-		return {}
+		return {
+			"speech" = "permalink"
+		}
 	
 	price = data.get("price")
 	if price is None:
-		return {}
+		return {
+			"speech" = "price"
+		}
 	
 	speech = "We have " + name + "\nThe link to it is " + permalink + "\nThe price is " + price
 	
