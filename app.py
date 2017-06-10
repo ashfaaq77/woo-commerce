@@ -59,7 +59,7 @@ def processRequest(req):
 def makeJson(req):
 	result = req.get("result")
 	parameters = result.get("parameters")
-	goods = parameters.get("inventory")
+	goods = parameters.get("goods")
 	
 	if goods is None:
 		return {}
