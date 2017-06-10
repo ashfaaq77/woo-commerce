@@ -25,7 +25,7 @@ wcapi = API(
 	version = "wc/v2"
 )
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['GET'])
 def webhook():
 	req = request.get_json(silent=True, force=True)
 	
