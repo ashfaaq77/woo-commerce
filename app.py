@@ -52,9 +52,7 @@ def processRequest(req):
 	data = makeJson(req)
 	res = makeWebHookResult(data)
 	print("res in processRequest")
-	print(res.get("source"))
-	print(res.get("speech"))
-	print(res.get("displayText"))
+	print(res)
 	
 	return res
 	
@@ -65,7 +63,8 @@ def makeJson(req):
 	
 	if goods is None:
 		return {}
-	
+	print("goods")
+	print(type(goods))
 	productResult = "products/" + goods
 	data = wcapi.get(productResult).json()
 	
