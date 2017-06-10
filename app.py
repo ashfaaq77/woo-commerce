@@ -83,7 +83,7 @@ def makeWebHookResult(data):
 	if price is None:
 		return {}
 	
-	speech = "We have " + data.get('name') + " The link to it is " + data.get('permalink') + " The price is " + data.get('price')
+	speech = "We have " + data.get('name') + "\nThe link to it is " + data.get('permalink') + "\nThe price is " + data.get('price')
 	
 	print("Responses")
 	print(speech)
