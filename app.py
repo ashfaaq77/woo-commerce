@@ -42,9 +42,6 @@ def webhook():
 	r = make_response(res)
 	r.headers['Content-Type'] = 'application/json'
 	
-	print("r")
-	print(r)
-	
 	return r
 
 def processRequest(req):
@@ -55,7 +52,9 @@ def processRequest(req):
 	data = makeJson(req)
 	res = makeWebHookResult(data)
 	print("res in processRequest")
-	print(res)
+	print(res.get("source"))
+	print(res.get("speech"))
+	print(res.get("displayText"))
 	
 	return res
 	
@@ -92,8 +91,8 @@ def makeWebHookResult(data):
 	
 	
 	return {
-		#"speech": speech,
-		#"displayText": speech,
+		"speech": speech,
+		"displayText": speech,
 		#"data":{},
 		# "contextOut":[],
 		"source": "apiai-woocommerce"
