@@ -18,9 +18,9 @@ from woocommerce import API
 app = Flask(__name__)
 
 wcapi = API(
-	url = "https://dev.i-spy360.mu/woocommerce-chatbot/",
-	consumer_key = "ck_b1d5aede2d327d994f3abac95945de0d3881fd9e",
-	consumer_secret = "cs_980d7219d925bbd2ed75faafbd74ec59695153ed",
+	url = "url",
+	consumer_key = "key",
+	consumer_secret = "secret",
 	wp_api = True,
 	version = "wc/v2"
 )
